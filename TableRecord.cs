@@ -13,7 +13,6 @@ namespace TableSortingApp
             Value = value;
         }
 
-        // Для удобного вывода
         public override string ToString()
         {
             return $"{Key,5} | {Value,-15}";

@@ -7,6 +7,7 @@ namespace TableSortingApp
 {
     class Program
     {
+
         static bool valid = true;
         static void Main(string[] args)
         {
@@ -38,7 +39,7 @@ namespace TableSortingApp
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"\nУспешно загружено {records.Count} записей из файла.");
                         Console.ResetColor();
-                        valid = false;
+                        break;
                     }
                     else
                     {
@@ -63,7 +64,7 @@ namespace TableSortingApp
                         Console.WriteLine($"Введено {records.Count} записей.");
                         Console.ResetColor();
                         Console.ReadLine();
-                        valid = false;
+                        break;
                     }
                     else
                     {
@@ -72,11 +73,6 @@ namespace TableSortingApp
                         Console.ResetColor();
                         Console.ReadLine();
                     }
-                }
-                else
-                {
-                    Console.WriteLine("\nНеверный ввод. Нажмите Enter...");
-                    Console.ReadLine();
                 }
             } while (valid);
 
@@ -108,8 +104,6 @@ namespace TableSortingApp
                         PerformSort(tableToSort, TableSorter.ShellSort);
                         break;
                     default:
-                        Console.WriteLine("Неверный ввод. Нажмите Enter...");
-                        Console.ReadLine();
                         break;
                 }
             } while (valid);
@@ -161,7 +155,6 @@ namespace TableSortingApp
 
         static void InputManually(List<TableRecord> list)
         {
-            
             valid = true;
             do
             {
