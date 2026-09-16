@@ -39,7 +39,7 @@ namespace TableSortingApp
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"\nУспешно загружено {records.Count} записей из файла.");
                         Console.ResetColor();
-                        break;
+                        valid = false;
                     }
                     else
                     {
@@ -64,7 +64,7 @@ namespace TableSortingApp
                         Console.WriteLine($"Введено {records.Count} записей.");
                         Console.ResetColor();
                         Console.ReadLine();
-                        break;
+                        valid = false;
                     }
                     else
                     {
@@ -72,6 +72,7 @@ namespace TableSortingApp
                         Console.WriteLine("\nВы не ввели ни одной записи!");
                         Console.ResetColor();
                         Console.ReadLine();
+                        valid = true;
                     }
                 }
             } while (valid);
@@ -154,14 +155,14 @@ namespace TableSortingApp
 
         static void InputManually(List<TableRecord> list)
         {
-            valid = true;
+            bool inputting = true;
             do
             {
                 Console.Write("> ");
                 string? input = Console.ReadLine();
                 
                 if (input == null) continue;
-                if (input.Trim().ToLower() == "end") valid = false;
+                if (input.Trim().ToLower() == "end") { inputting = false; continue; }
                 if (string.IsNullOrWhiteSpace(input)) continue;
 
                 string[] parts = input.Split(';');
@@ -175,7 +176,7 @@ namespace TableSortingApp
                     Console.WriteLine("invalid input");
                     Console.ResetColor();
                 }
-            } while (valid);
+            } while (inputting);
         }
     }
 }
