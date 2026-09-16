@@ -7,12 +7,13 @@ namespace TableSortingApp
 {
     class Program
     {
+        static bool valid = true;
         static void Main(string[] args)
         {
             
             List<TableRecord> records = new List<TableRecord>();
 
-            while (true)
+            do
             {
                 Console.Clear();
                 Console.WriteLine("1. Загрузить из файла data.txt");
@@ -26,9 +27,7 @@ namespace TableSortingApp
 
                 if (choice == "1")
                 {
-                    // Пытаемся загрузить из файла
                     string filePath = "data.txt";
-                    // Если файла нет в текущей папке, ищем в корне
                     if (!File.Exists(filePath))
                     {
                         filePath = Path.Combine("..", "..", "..", "data.txt");
@@ -39,9 +38,7 @@ namespace TableSortingApp
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"\nУспешно загружено {records.Count} записей из файла.");
                         Console.ResetColor();
-                        Console.WriteLine("Нажмите Enter, чтобы продолжить...");
-                        Console.ReadLine();
-                        break;
+                        valid = false;
                     }
                     else
                     {
@@ -66,7 +63,7 @@ namespace TableSortingApp
                         Console.WriteLine($"Введено {records.Count} записей.");
                         Console.ResetColor();
                         Console.ReadLine();
-                        break;
+                        valid = false;
                     }
                     else
                     {
@@ -81,11 +78,12 @@ namespace TableSortingApp
                     Console.WriteLine("\nНеверный ввод. Нажмите Enter...");
                     Console.ReadLine();
                 }
-            }
+            } while (valid);
 
             TableRecord[] originalTable = records.ToArray();
 
-            while (true)
+            valid = true;
+            do
             {
                 Console.Clear();
                 TableSorter.PrintTable(originalTable);
@@ -97,7 +95,7 @@ namespace TableSortingApp
 
                 string? choice = Console.ReadLine();
 
-                if (choice == "0") break;
+                if (choice == "0") valid = false;
 
                 TableRecord[] tableToSort = (TableRecord[])originalTable.Clone();
 
@@ -114,7 +112,7 @@ namespace TableSortingApp
                         Console.ReadLine();
                         break;
                 }
-            }
+            } while (valid);
         }
 
         static void PerformSort(TableRecord[] table, Action<TableRecord[]> sortMethod)
@@ -122,6 +120,7 @@ namespace TableSortingApp
 
             sortMethod(table);
 
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nСОРТИРОВКА ЗАВЕРШЕНА");
             Console.ResetColor();
@@ -162,13 +161,15 @@ namespace TableSortingApp
 
         static void InputManually(List<TableRecord> list)
         {
-            while (true)
+            
+            valid = true;
+            do
             {
                 Console.Write("> ");
                 string? input = Console.ReadLine();
                 
                 if (input == null) continue;
-                if (input.Trim().ToLower() == "end") break;
+                if (input.Trim().ToLower() == "end") valid = false;
                 if (string.IsNullOrWhiteSpace(input)) continue;
 
                 string[] parts = input.Split(';');
@@ -182,7 +183,7 @@ namespace TableSortingApp
                     Console.WriteLine("invalid input");
                     Console.ResetColor();
                 }
-            }
+            } while (valid);
         }
     }
 }

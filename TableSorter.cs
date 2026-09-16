@@ -28,7 +28,6 @@ namespace TableSortingApp
             }
             Console.ResetColor();
 
-            // Задержка для анимации (1 секунда)
             if (animate)
             {
                 Thread.Sleep(200); 
@@ -67,7 +66,6 @@ namespace TableSortingApp
             
             for (int gap = n / 2; gap > 0; gap /= 2)
             {
-                Console.Clear();
                 Thread.Sleep(200);
 
                 for (int i = gap; i < n; i++)
