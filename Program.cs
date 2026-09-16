@@ -84,7 +84,7 @@ namespace TableSortingApp
                 Console.Clear();
                 TableSorter.PrintTable(originalTable);
 
-                Console.WriteLine("1. Метод вставки с прямым включением");
+                Console.WriteLine("\n1. Метод вставки с прямым включением");
                 Console.WriteLine("2. Метод Шелла");
                 Console.WriteLine("0. Выход");
                 Console.Write("Ваш выбор: ");
@@ -119,7 +119,6 @@ namespace TableSortingApp
             Console.WriteLine("\nСОРТИРОВКА ЗАВЕРШЕНА");
             Console.ResetColor();
             TableSorter.PrintTable(table, -1, -1);
-
             Console.ReadLine();
         }
 
