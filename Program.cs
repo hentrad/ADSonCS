@@ -119,7 +119,7 @@ namespace TableSortingApp
 
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nСОРТИРОВКА ЗАВЕРШЕНА");
+            Console.WriteLine("СОРТИРОВКА ЗАВЕРШЕНА");
             Console.ResetColor();
             TableSorter.PrintTable(table, -1, -1);
             
