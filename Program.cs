@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Diagnostics;
 
 namespace TableSortingApp
 {
@@ -9,6 +10,7 @@ namespace TableSortingApp
     {
 
         static bool valid = true;
+        delegate void SortMethod(TableRecord[] table, Stopwatch timer, out long iterations);
         static void Main(string[] args)
         {
             
@@ -54,7 +56,7 @@ namespace TableSortingApp
                     Console.Clear();
                     Console.WriteLine("Введите записи в формате: Ключ;Значение");
                     Console.WriteLine("Пример: 45;Яблоко");
-                    Console.WriteLine("Для завершения введите 'end'\n");
+                    Console.WriteLine("Для завершения 'end'\n");
 
                     InputManually(records);
 
@@ -111,7 +113,7 @@ namespace TableSortingApp
         }
 
         static void PerformSort(TableRecord[] table, Action<TableRecord[]> sortMethod)
-{
+        {
 
             sortMethod(table);
 
@@ -120,6 +122,7 @@ namespace TableSortingApp
             Console.WriteLine("\nСОРТИРОВКА ЗАВЕРШЕНА");
             Console.ResetColor();
             TableSorter.PrintTable(table, -1, -1);
+            
             Console.ReadLine();
         }
 
